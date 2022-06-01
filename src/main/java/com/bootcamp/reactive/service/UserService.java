@@ -9,6 +9,7 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import com.bootcamp.reactive.config.CacheConfig;
+import com.bootcamp.reactive.dto.UserDto;
 import com.bootcamp.reactive.entity.User;
 import com.bootcamp.reactive.repository.UserRepository;
 
@@ -29,9 +30,10 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 	
-	public User saveUser(User user) {
+	public User saveUser(UserDto userDto) {
 		
-		streamBridge.send("output-out-0", user);
+		User user = userDto.getUser();
+		streamBridge.send("output-out-0", userDto);
 		return repository.save(user);
 	}
 	

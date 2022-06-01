@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bootcamp.reactive.dto.UserDto;
 import com.bootcamp.reactive.entity.User;
 import com.bootcamp.reactive.service.UserService;
 
@@ -19,9 +20,9 @@ public class UserController {
 	private UserService service;
 	
 	@PostMapping
-	public User saveUser(@RequestBody User user) {
+	public User saveUser(@RequestBody UserDto userDto) {
 		
-		return service.saveUser(user);
+		return service.saveUser(userDto);
 	}
 	
 	@GetMapping("/{id}")
